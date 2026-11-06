@@ -39,5 +39,4 @@ def cerrar_sesion(request):
 
 @login_required(login_url='login')
 def gestion_mascotas(request):
-    mascotas = Mascota.objects.all()
-    return render(request, 'refugio/gestion.html', {'mascotas': mascotas})
+    return render(request, 'refugio/gestion.html')
