@@ -4,7 +4,7 @@
 
 #instalacion y configuracion
    ```bash
-   git clone <URL_DE_TU_REPOSITORIO>
+   git clone https://github.com/Richard-OnO/CER2-MendozaRicardo.git
    cd TallerDjango
 
 #Crear y activar el entorno virtual
