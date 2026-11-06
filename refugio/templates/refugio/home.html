@@ -1,0 +1,23 @@
+{% extends 'refugio/base.html' %}
+
+{% block title %}Inicio - Refugio Huellitas{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+        <div class="p-4 p-md-5 mb-4 bg-white rounded-3 shadow-sm border text-center text-md-start">
+            <h1 class="display-6 fw-bold text-primary mb-3">¡Bienvenido al Refugio Huellitas!</h1>
+            <p class="fs-5 text-secondary">Centralizando la adopción de mascotas en la Región de Valparaíso.</p>
+            <hr class="my-4">
+            <p class="mb-4">Explora las mascotas disponibles o gestiona los datos del refugio.</p>
+            <a class="btn btn-primary btn-lg w-100 w-md-auto mb-2 mb-md-0" href="{% url 'catalogo' %}" role="button">Ver Catálogo de Mascotas</a>
+
+            {% if user.is_staff %}
+                <div class="mt-4">
+                    <a href="/admin/" class="btn btn-outline-secondary btn-sm">Ir al Admin de Django</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

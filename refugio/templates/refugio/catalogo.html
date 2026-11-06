@@ -1,0 +1,51 @@
+{% extends 'refugio/base.html' %}
+
+{% block title %}Catálogo de Mascotas - Refugio Huellitas{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Menú de filtros por especie -->
+    <div class="col-12 col-lg-3 mb-4">
+        <h3 class="h5 mb-3 fw-bold text-secondary">Filtrar por Especie:</h3>
+        <div class="list-group shadow-sm">
+            <a href="{% url 'catalogo' %}" class="list-group-item list-group-item-action {% if not request.GET.especie %}active{% endif %}">Todas las especies</a>
+            {% for especie in especies %}
+                <a href="{% url 'catalogo' %}?especie={{ especie.id }}" class="list-group-item list-group-item-action {% if request.GET.especie == especie.id|stringformat:"s" %}active{% endif %}">{{ especie.nombre }}</a>
+            {% endfor %}    
+        </div>
+    </div>
+
+    <!-- Grilla de mascotas -->
+    <div class="col-12 col-lg-9">
+        <h1 class="h2 mb-3 text-primary fw-bold">Catálogo de Mascotas en Adopción</h1>
+        <hr class="mb-4">
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for mascota in mascotas %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="{{ mascota.imagen }}" class="card-img-top object-fit-cover" alt="{{ mascota.nombre }}" style="height: 200px;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-primary fw-bold mb-1">{{ mascota.nombre }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">({{ mascota.especie.nombre }})</h6>
+                            <p class="card-text small mb-3">
+                                <strong>Edad:</strong> {{ mascota.edad_aproximada }}<br>
+                                <strong>Sexo:</strong> {{ mascota.sexo }}
+                            </p>
+                            <div class="mt-auto">
+                                <a href="{% url 'detalle_mascota' mascota.id %}" class="btn btn-outline-primary btn-sm w-100">Ver detalles completos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-info text-center" role="alert">
+                        No hay mascotas registradas para esta categoría.
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

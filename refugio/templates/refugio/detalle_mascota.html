@@ -1,0 +1,30 @@
+{% extends 'refugio/base.html' %}
+
+{% block title %}{{ mascota.nombre }} - Refugio Huellitas{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+        <div class="card shadow-sm border-0 overflow-hidden bg-white">
+            <div class="row g-0">
+                <div class="col-12 col-md-5">
+                    <img src="{{ mascota.imagen }}" class="img-fluid w-100 h-100 object-fit-cover" alt="{{ mascota.nombre }}" style="min-height: 250px;">
+                </div>
+                <div class="col-12 col-md-7">
+                    <div class="card-body p-4 d-flex flex-column h-100">
+                        <h1 class="h2 text-primary fw-bold mb-1">{{ mascota.nombre }}</h1>
+                        <h6 class="text-muted mb-3">Especie: {{ mascota.especie.nombre }}</h6>
+                        <hr>
+                        <p class="mb-1"><strong>Sexo:</strong> {{ mascota.sexo }}</p>
+                        <p class="mb-3"><strong>Edad aproximada:</strong> {{ mascota.edad_aproximada }}</p>
+                        <p class="card-text text-secondary mb-4">{{ mascota.descripcion }}</p>
+                        <div class="mt-auto">
+                            <a href="{% url 'catalogo' %}" class="btn btn-outline-secondary btn-sm">Volver al Catálogo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
